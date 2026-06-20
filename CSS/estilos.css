@@ -1,20 +1,19 @@
-/*VARIABLES*/
-
+/* VARIABLES */
 :root {
     --color-fondo: #1a1a1a;     
     --color-texto: #da5e0b;      
-    --color-acento:#00fa15;     
+    --color-acento: #00fa15;     
     --color-secundario: #ff00ff; 
-    --color-blanco: #000000;
+    --color-blanco: #ffffff;    
+    --color-negro: #000000;     
     --color-h2: #00fa15;
-    --color-h3:#ff00ff;
-    --color-h4:#b529fb;
+    --color-h3: #ff00ff;
+    --color-h4: #b529fb;
     --max-width: 1100px;
 }
 
-/*RESET Y CONFIGURACIÓN BASE*/
-
-thead  {
+/* RESET Y CONFIGURACIÓN BASE  */
+*, *::before, *::after {
     box-sizing: border-box; 
     margin: 0;
     padding: 0;
@@ -25,23 +24,26 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-
     font-size: 1rem;                 
     line-height: 1.6;                
     background-color: var(--color-fondo);
     color: var(--color-texto);
 }
 
-/*Contenedor principal para centrar contenido*/
 
+p, li, dd, .card-text {
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* CONTENEDOR PRINCIPAL */
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 20px; 
 }
 
-/*TIPOGRAFÍA HEADINGS*/
-
+/* TIPOGRAFÍA HEADINGS */
 h1 {
     font-family: 'Honk', system-ui;
     font-size: 4rem; 
@@ -61,17 +63,17 @@ h3 {
     text-transform: uppercase;
     margin-top: 25px;
 }
+
 h4 {
     font-size: 1.5rem;
     color: var(--color-h4);
     text-transform: uppercase;
 }
 
-/*HEADER Y NAVEGACIÓN*/
-
+/* HEADER Y NAVEGACIÓN */
 header {
     background-color: var(--color-secundario);
-    color: var(--color-blanco);
+    color: var(--color-negro);
     padding: 2.5rem 0;
     margin-bottom: 2rem;
 }
@@ -82,68 +84,73 @@ nav ul {
     gap: 20px; 
 }
 
-
 nav ul li a {
     text-decoration: none; 
-    color: var(--color-blanco);
+    color: var(--color-negro);
     font-weight: bold;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease;
     padding: 10px 15px;
     border-radius: 8px;
 }
 
-
 nav ul li a:hover {
     background-color: var(--color-acento);
-    color: black;
+    color: var(--color-negro);
 }
+
 ul li {
     margin-bottom: 10px;
 }
 
-/*CONTENIDO PRINCIPAL, SECCIONES Y ARTÍCULOS*/
-
+/* CONTENIDO PRINCIPAL, SECCIONES Y ARTÍCULOS */
 main {
     margin-bottom: 3rem;
 }
+
+
 .img-principal {
     display: block;
     width: 100%;
     max-width: 250px; 
     margin: 20px auto;
-    border: 0px solid #333; 
     image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
+
 .img-equipo {
-        display: block;
-        max-width: 250px; 
-        width: 100%;
-        margin: 20px auto;
-        image-rendering: pixelated;
-        border: 4px double #555; 
-    }
-    dl {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.1); 
-        border-radius: 10px;
-    }
+    display: block;
+    max-width: 100%; 
+    height: auto;
+    margin: 20px auto;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
 
-    dt {
-        color: #d35400; 
-        font-size: 1.2rem;
-        margin-top: 15px;
-    }
+/* Listas de descripción (dl, dt, dd) */
+dl {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 10px;
+}
 
-    dd {
-        margin-bottom: 10px;
-        line-height: 1.5;
-    }
+dt {
+    color: #d35400; 
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+
+dd {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
 section {
     padding: 2rem 0;
     margin-bottom: 1rem;
 }
+
 article {
     background-color: rgba(255, 255, 255, 0.05);
     border: 2px solid var(--color-secundario);
@@ -152,15 +159,16 @@ article {
     margin-bottom: 40px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
 }
+
 p {
     margin-bottom: 1.2rem;
 }
+
 a {
     color: var(--color-acento);
 }
 
-/*TABLAS*/
-
+/* TABLAS */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -172,16 +180,14 @@ table th, table td {
     border: 1px solid #ddd;
     padding: 12px;
     background-color: var(--color-acento);
-    color: #000;
+    color: var(--color-negro);
 }
-
 
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-/*FORMULARIOS*/
-
+/* FORMULARIOS */
 input, textarea {
     width: 100%;
     padding: 10px;
@@ -190,21 +196,21 @@ input, textarea {
     border-radius: 4px;
 }
 
-/*Selector de ID*/
-
+/* BOTONES / SELECTORES DE ID */
 #btn-enviar {
     background-color: var(--color-acento);
-    color: white;
+    color: var(--color-negro);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
 }
 
-/*FOOTER*/
-
+/* FOOTER */
 footer {
-    background-color: #2d3436; 
-    color: var(--color-blanco);
+    background-color: #fa6401; 
+    color: var(--color-negro);
     padding: 2rem 0;
     text-align: center;
     margin-top: 2rem;
