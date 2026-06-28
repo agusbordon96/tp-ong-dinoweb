@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Honk:MORF@15&family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="CSS/estilos.css">
     
     <style>
@@ -75,6 +76,11 @@
 </head>
 <body class="bg-dark text-light">
 
+    <audio id="musicaFondo" loop>
+        <source src="multimedia/img8bits/Audio/JurassicParkTema.mp3" type="audio/mpeg">
+        
+    </audio>
+
     <header class="navbar navbar-expand-md navbar-light bg-light-subtle border-bottom border-danger border-4 shadow">
         <div class="container">
             <a class="navbar-brand fw-bold fs-3 font-honk brand-title" href="#">TITANES DEL SUR</a>
@@ -103,7 +109,7 @@
     </section>
 
     <main class="container my-5">
-        <!-- Bloque de Presentación: Imagen Izquierda / Texto Derecha -->
+        
         <div class="row align-items-center justify-content-center g-5">
             <div class="col-md-5 text-center">
                 <img src="multimedia/img8bits/Avatares-Agus-Tomi.png" alt="Avatares en ocho bits de Agus y Tomi con dinosaurios" class="img-equipo mb-3">
@@ -114,16 +120,20 @@
                 <p class="lead text-justify">No somos los típicos científicos de saco y corbata encerrados en un laboratorio con olor a naftalina. Somos dos amigos que un día, entre una línea de código y un solo de <strong>Chester Bennington</strong>, se dieron cuenta de algo: la paleontología en Argentina es épica, pero su comunicación está estancada en la edad de piedra.</p>
                 
                 <p class="text-justify"><strong>Titanes del Sur</strong> nació en esa intersección donde el trekking por la estepa se cruza con el arte digital y la tecnología. ¿Qué nos mueve? Nuestro <em>"Stack"</em> de pasiones.</p>
+                  <p class="text-justify"><strong>Perooo</strong> esto no se trata solo de hacer renders facheros de dinosaurios. Hay una realidad que quema: Argentina es una de las mayores canteras paleontológicas del planeta, y muchos de sus yacimientos están en peligro. El vandalismo, el turismo sin control, el saqueo de piezas y el simple paso del tiempo amenazan con borrar páginas enteras de la historia de la Tierra antes de que podamos leerlas.
+                  Ahí es donde pisamos fuerte. Creemos que la mejor forma de preservar un yacimiento no es alambrarlo y esconderlo, sino hacer que la comunidad lo entienda, lo valore y se apropie de él.
+                  Usamos la tecnología para digitalizar y mapear el patrimonio, creando registros indestructibles que traspasen generaciones. Queremos democratizar el acceso a la ciencia para que cada persona que camine por la Patagonia sepa que está pisando suelo sagrado del Mesozoico y se convierta en un guardián de ese lugar.</p>
+                
             </div>
         </div>
 
-        <!-- Sección del Stack de Pasiones -->
+        
         <h3 class="text-center mt-5 mb-4 font-jaro stack-title">Nuestro Stack de Pasiones</h3>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="card h-100 text-white">
                     <div class="card-body">
-                        <h5 class="card-title text-success font-jaro">Código & Tecnología</h5>
+                        <h4 class="card-title text-success font-jaro">Código & Tecnología</h4>
                         <p class="card-text text-justify">Convencidos de que un fósil de 70 millones de años se entiende mejor con Realidad Virtual o un modelo 3D bien pulido. Queremos hackear el aburrimiento académico.</p>
                     </div>
                 </div>
@@ -146,7 +156,7 @@
             </div>
         </div>
 
-        <!-- Cuadro de Filosofía -->
+        
         <div class="mt-5 p-5 rounded border border-danger border-opacity-25 bg-danger bg-opacity-10 text-center">
             <h4 class="mb-4 font-jaro">Nuestra Filosofía</h4>
             <p class="fs-5 fst-italic">"In the End, it matters"</p>
@@ -161,8 +171,14 @@
                 &copy; 2026 Titanes del Sur — Todos los derechos reservados.
             </p>
         </div>
+        <div class="text-center mt-2">
+            <button id="btnControl" class="btn btn-primary btn-lg">
+                <i id="icono" class="bi bi-play-fill"></i> <span id="textoBoton">Reproducir Música</span>
+            </button>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
