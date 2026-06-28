@@ -208,10 +208,13 @@ input, textarea {
 }
 
 /* FOOTER */
-footer {
+/*footer {
     background-color: #fa6401; 
     color: var(--color-negro);
     padding: 2rem 0;
     text-align: center;
     margin-top: 2rem;
+}*/
+form label{
+    color:white;
 }
