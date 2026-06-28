@@ -181,11 +181,19 @@
          src="multimedia/img8bits/Giganotosaurio.png" 
          alt="Imágen en 8 bits de un giganotosaurio">
     </main>
+    <audio id="musicaFondo" loop>
+        <source src="multimedia/Audio/JurassicParkTema.mp3" type="audio/mpeg">
+    </audio>
 <footer class="bg-dark-subtle text-center py-4 border-top border-info border-4 mt-auto">
     <div class="container">
         <p class="m-0 tracking-wide text-secondary">
             &copy; 2026 Titanes del Sur — Todos los derechos reservados.
         </p>
+    </div>
+    <div class="text-center mt-2">
+        <button id="btnControl" class="btn btn-primary btn-lg">
+            <i id="icono" class="bi bi-play-fill"></i> <span id="textoBoton">Reproducir Música</span>
+        </button>
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

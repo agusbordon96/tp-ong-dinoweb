@@ -71,7 +71,7 @@ h4 {
 }
 
 /* HEADER Y NAVEGACIÓN */
-header {
+header:not(.navbar){
     background-color: var(--color-secundario);
     color: var(--color-negro);
     padding: 2.5rem 0;
@@ -169,14 +169,14 @@ a {
 }
 
 /* TABLAS */
-table {
+.tabla-paleo {
     width: 100%;
     border-collapse: collapse;
     margin: 2rem 0;
     background: var(--color-blanco);
 }
 
-table th, table td {
+.tabla-paleo th, .tabla-paleo td {
     border: 1px solid #ddd;
     padding: 12px;
     background-color: var(--color-acento);
