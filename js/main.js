@@ -75,31 +75,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 mostrarCartelRetro(
                     "🌿 ¡EXPEDICIÓN COMPLETADA! 🌿",
                     "Gracias por recorrer DinoWeb.",
-                    "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3V5N3NidmR4ZW9pZHBsNWhvNmU4NXp6bW9jcHdjdXg1Ymszb3B3ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3o7TKwBiawZyo4p904/giphy.gif"
+                    "./multimedia/img8bits/Rex-bailando-easteregg.gif"
                 );
             }, 2000);
         }
 
-    // *- Easter Egg #2: Contador de 10 clics en el sitio -*
+    // *- Easter Egg #2: Contador de 10 clics en el sitio (Reutilizable) -*
     let clicksTotales = parseInt(localStorage.getItem('clicksGlobales')) || 0;
-    let eggClicksMostrado = localStorage.getItem('easterEggClicksMostrado') === 'true';
 
         document.body.addEventListener('click', (e) => {
             if (e.target.id === 'btnCerrarCartel') return;
 
-            if (!eggClicksMostrado) {
-                clicksTotales++;
-                localStorage.setItem('clicksGlobales', clicksTotales);
+            clicksTotales++;
+            localStorage.setItem('clicksGlobales', clicksTotales);
 
-                if (clicksTotales >= 10) {
-                    eggClicksMostrado = true;
-                    localStorage.setItem('easterEggClicksMostrado', 'true');
-                    mostrarCartelRetro(
-                        "🦕 ¡ENCONTRASTE UN DINOSAURIO BAILARÍN! 🦕",
-                        "Seguí explorando...",
-                        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWR1ZHh3MDVpMnJrdnE5cm9idGpxcnVwZXUxd3RndXNoNnJ6eTJidyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/V9Xpfm74mbe0f9vNKo/giphy.gif"
-                    );
-                }
+            if (clicksTotales >= 10) {
+                // Reiniciamos el contador a 0 para que pueda volver a empezar de forma infinita
+                clicksTotales = 0;
+                localStorage.setItem('clicksGlobales', 0);
+
+                mostrarCartelRetro(
+                    "🦕 ¡ENCONTRASTE UN DINOSAURIO BAILARÍN! 🦕",
+                    "Seguí explorando...",
+                    "./multimedia/img8bits/Spinosaurio-bailando-easteregg.gif"
+                );
             }
         });
 });
