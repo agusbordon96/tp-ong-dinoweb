@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btnControl && musica) {
             btnControl.addEventListener('click', () => {
                 if (musica.paused) {
-                    musica.play();
+                    musica.play().catch(err => console.log("Reproducción retenida."));
                     icono.className = 'bi bi-pause-fill';
                     textoBoton.textContent = 'Pausar Música';
                 } else {
@@ -18,33 +18,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
     // *- Validación del formulario y cartel retro -*
     const formulario = document.querySelector('form');
         if (formulario) {
             formulario.addEventListener('submit', function(evento) {
                 evento.preventDefault(); // Frenamos el envío automático
 
-            // Campos obligatorios del formulario
-                const nombre = document.getElementById('nombre').value.trim();
-                const nick = document.getElementById('nick').value.trim();
-                const programa = document.getElementById('programa').value;
+            // Campos obligatorios del formulario reales de Contacto.html
                 const telefono = document.getElementById('telefono').value.trim();
                 const mail = document.getElementById('mail').value.trim();
+                const mensaje = document.getElementById('mensaje').value.trim();
 
                 const expresionMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             // Condicional por si falta algún campo crítico
-            if (!nombre || !nick || !programa || !telefono || !mail) {
+            if (!telefono || !mail || !mensaje) {
                 mostrarCartelRetro(
                     "⚠️ ERROR DE SISTEMA",
-                    "Falta completar datos en la Central de Mando.\nTodos los campos obligatorios deben ser procesados."
+                    "Falta completar datos en la Central de Mando.\nTodos los campos obligatorios deben ser procesados.",
+                    null
                 );
                 return;
             }
             if (!expresionMail.test(mail)) {
                 mostrarCartelRetro(
                     "📡 FALLA DE SEÑAL",
-                    "El correo electrónico ingresado no tiene un\nformato válido de coordenadas de red."
+                    "El correo electrónico ingresado no tiene un\nformato válido de coordenadas de red.",
+                    null
                 );
                 return;
             }
@@ -52,15 +53,58 @@ document.addEventListener('DOMContentLoaded', () => {
             // Cartel si el formulario es correcto
             mostrarCartelRetro(
                 "🧬 ¡SOLICITUD RECIBIDA!",
-                "Gracias por sumarte a Titanes del Sur.\nCada nueva persona ayuda a proteger un poco más\nel mundo jurásico y el patrimonio paleontológico."
+                "Gracias por sumarte a Titanes del Sur.\nCada nueva persona ayuda a proteger un poco más\nel mundo jurásico y el patrimonio paleontológico.",
+                null
             );
             formulario.reset(); 
         });
     }
+
+    // *- Easter Egg #1: Expedición completada (4 páginas visitadas) -*
+    let paginaActual = window.location.pathname.split("/").pop() || "index.html";
+    let paginasVisitadas = JSON.parse(localStorage.getItem('paginasVisitadas')) || [];
+
+        if (!paginasVisitadas.includes(paginaActual)) {
+            paginasVisitadas.push(paginaActual);
+            localStorage.setItem('paginasVisitadas', JSON.stringify(paginasVisitadas));
+        }
+
+        if (paginasVisitadas.length >= 4 && !localStorage.getItem('easterEggPaginasMostrado')) {
+            localStorage.setItem('easterEggPaginasMostrado', 'true');
+            setTimeout(() => {
+                mostrarCartelRetro(
+                    "🌿 ¡EXPEDICIÓN COMPLETADA! 🌿",
+                    "Gracias por recorrer DinoWeb.",
+                    "./multimedia/img8bits/Rex-bailando-easteregg.gif"
+                );
+            }, 2000);
+        }
+
+    // *- Easter Egg #2: Contador de 10 clics en el sitio (Reutilizable) -*
+    let clicksTotales = parseInt(localStorage.getItem('clicksGlobales')) || 0;
+
+        document.body.addEventListener('click', (e) => {
+            if (e.target.id === 'btnCerrarCartel') return;
+
+            clicksTotales++;
+            localStorage.setItem('clicksGlobales', clicksTotales);
+
+            if (clicksTotales >= 10) {
+                // Reiniciamos el contador a 0 para que pueda volver a empezar de forma infinita
+                clicksTotales = 0;
+                localStorage.setItem('clicksGlobales', 0);
+
+                mostrarCartelRetro(
+                    "🦕 ¡ENCONTRASTE UN DINOSAURIO BAILARÍN! 🦕",
+                    "Seguí explorando...",
+                    "./multimedia/img8bits/Spinosaurio-bailando-easteregg.gif"
+                );
+            }
+        });
 });
 
-// *- Función extra para el Pop-Up -*
-function mostrarCartelRetro(titulo, mensaje) {
+// *- Función extra para el Pop-Up con soporte de GIFs animados -*
+function mostrarCartelRetro(titulo, mensaje, urlGif) {
     // Contenedor del Pop-Up
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -86,6 +130,12 @@ function mostrarCartelRetro(titulo, mensaje) {
     caja.style.boxShadow = '0 0 20px rgba(255, 0, 255, 0.6)';
     caja.style.maxWidth = '500px';
 
+    // Condicional para inyectar la etiqueta de la animación si corresponde
+    let bloqueGif = "";
+    if (urlGif) {
+        bloqueGif = `<img src="${urlGif}" alt="Dino Danza" class="img-fluid my-2" style="max-height: 140px; image-rendering: pixelated;">`;
+    }
+
     // Diseño para el Pop-Up
     caja.innerHTML = `
         <pre style="font-family: inherit; color: inherit; margin: 0; white-space: pre-wrap;">
@@ -96,6 +146,8 @@ ${mensaje}
 
 ══════════════════════════════════
         </pre>
+        ${bloqueGif}
+        <br>
         <button id="btnCerrarCartel" class="btn btn-outline-danger btn-sm mt-3 font-jaro" style="text-transform: uppercase;">
             [ Cerrar Transmisión ]
         </button>
@@ -121,12 +173,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (!content) return;
 
-            
             document.querySelectorAll('.collapse-content').forEach(el => {
                 if (el !== content) el.style.display = 'none';
             });
 
-            
             if (content.style.display === 'block') {
                 content.style.display = 'none';
             } else {
